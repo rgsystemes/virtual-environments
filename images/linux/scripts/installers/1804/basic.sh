@@ -50,7 +50,7 @@ echo "Install shellcheck"
 apt-get install -y --no-install-recommends shellcheck
 
 echo "Install sudo"
-apt-get install -y --no-install-recommends sudo
+apt-get install -y --no-install-recommends -o Dpkg::Options::="--force-confnew" sudo
 
 echo "Install telnet"
 apt-get install -y --no-install-recommends telnet
