@@ -12,6 +12,8 @@ LIBUV_VERSION=1.29.1
 CASSANDRA_VERSION=2.13.0
 PHP_VERSIONS=('7.1' '7.2' '7.3' '7.4')
 
+apt-get install -y libgmp-dev
+
 mkdir -p /tmp/lib
 pushd /tmp/lib
 echo "==> Download and install libuv1..."
