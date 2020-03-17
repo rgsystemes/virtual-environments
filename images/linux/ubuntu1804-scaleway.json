@@ -79,7 +79,7 @@
                 "METADATA_FILE={{user `metadata_file`}}",
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}"
             ],
-            "execute_command": "bash -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "env {{ .Vars }} {{ .Path }}"
         },
         {
             "type": "shell",
@@ -90,7 +90,7 @@
                 "IMAGE_VERSION={{user `image_version`}}",
                 "IMAGEDATA_FILE={{user `imagedata_file`}}"
             ],
-            "execute_command": "bash -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "env {{ .Vars }} {{ .Path }}"
         },
         {
             "type": "shell",
@@ -98,7 +98,7 @@
                 "echo ImageVersion={{user `image_version`}} | tee -a /etc/environment",
                 "echo ImageOS={{user `image_os`}} | tee -a /etc/environment"
             ],
-            "execute_command": "bash -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "env {{ .Vars }} {{ .Path }}"
         },
         {
             "type": "shell",
@@ -156,7 +156,7 @@
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
                 "DEBIAN_FRONTEND=noninteractive"
             ],
-            "execute_command": "bash -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "env {{ .Vars }} {{ .Path }}"
         },
         {
             "type": "file",
@@ -178,7 +178,7 @@
                 "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
                 "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
             ],
-            "execute_command": "bash -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "env {{ .Vars }} {{ .Path }}"
         },
         {
             "type": "shell",
@@ -191,7 +191,7 @@
                 "BOOST_VERSIONS=1.69.0",
                 "BOOST_DEFAULT=1.69.0"
             ],
-            "execute_command": "bash -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "env {{ .Vars }} {{ .Path }}"
         },
         {
             "type": "file",
@@ -206,7 +206,7 @@
                 "rm -rf {{user `installer_script_folder`}}",
                 "chmod 755 {{user `image_folder`}}"
             ],
-            "execute_command": "bash -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "env {{ .Vars }} {{ .Path }}"
         },
         {
             "type": "file",
@@ -219,7 +219,7 @@
                 "mkdir -p /etc/vsts",
                 "cp /tmp/ubuntu1804.conf /etc/vsts/machine_instance.conf"
             ],
-            "execute_command": "bash -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "env {{ .Vars }} {{ .Path }}"
         },
         {
             "type": "shell",
@@ -227,7 +227,7 @@
                 "sleep 30",
                 "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
             ],
-            "execute_command": "bash -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "env {{ .Vars }} {{ .Path }}"
         }
     ]
 }
