@@ -51,7 +51,5 @@ rm -R /usr/src/php-driver
 
 # Document what was added to the image
 echo "Lastly, document the installed versions"
-# git version 2.20.1
 DocumentInstalledItem "Datastax PHP driver v1.3.2"
-# git-lfs/2.6.1 (GitHub; linux amd64; go 1.11.1)
 DocumentInstalledItem "Cassandra CPP driver v${CASSANDRA_VERSION}"

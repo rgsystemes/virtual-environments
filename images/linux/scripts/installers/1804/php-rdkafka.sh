@@ -31,7 +31,5 @@ phpenmod -v ALL rdkafka
 
 # Document what was added to the image
 echo "Lastly, document the installed versions"
-# git version 2.20.1
 DocumentInstalledItem "PHP Rdkafka v${PHP_RDKAFKA_VERSION}"
-# git-lfs/2.6.1 (GitHub; linux amd64; go 1.11.1)
 DocumentInstalledItem "Librdkafka v${LIBRDKAFKA_VERSION}"
