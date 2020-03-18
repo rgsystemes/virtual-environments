@@ -142,6 +142,11 @@
             "destination": "{{user `installer_script_folder`}}/toolcache.json"
         },
         {
+            "type": "file",
+            "source": "{{template_dir}}/scripts/helpers/aliases",
+            "destination": "~/.bash_aliases"
+        },
+        {
             "type": "shell",
             "scripts":[
                 "{{template_dir}}/scripts/helpers/containercache.sh",
