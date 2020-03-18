@@ -186,6 +186,7 @@
                 "rm -rf {{user `helper_script_folder`}}",
                 "rm -rf {{user `installer_script_folder`}}",
                 "chmod 755 {{user `image_folder`}}",
+                "source ~/.bash_aliases && php73",
                 "apt-get -y autoclean",
                 "apt-get -y autoremove",
                 "find /var/lib/apt -type f | xargs rm -f",
