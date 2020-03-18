@@ -42,7 +42,6 @@ The following software is installed on machines with the dev update.
 - GNU C++ 9.2.1
 - Git (2.25.2)
 - Git Large File Storage (LFS) (2.10.0)
-- Miniconda (conda 4.8.2)
 - Node.js (v12.16.1)
 - Grunt (grunt-cli v1.2.0)
 - Gulp (CLI version: 2.2.0
@@ -57,8 +56,7 @@ Local version: Unknown)
 - PHP 7.2 (PHP 7.2.28-3+ubuntu18.04.1+deb.sury.org+1 (cli) (built: Feb 23 2020 07:23:25) ( NTS ))
 - PHP 7.3 (PHP 7.3.15-3+ubuntu18.04.1+deb.sury.org+1 (cli) (built: Feb 23 2020 07:23:33) ( NTS ))
 - PHP 7.4 (PHP 7.4.3 (cli) (built: Feb 23 2020 07:24:28) ( NTS ))
-- Composer  (Composer version 1.10.1 2020-03-13 20:34:27)
-- PHPUnit (PHPUnit 7.5.20 by Sebastian Bergmann and contributors.)
+- Composer (Composer version 1.10.1 2020-03-13 20:34:27)
 - Datastax PHP driver v1.3.2
 - Cassandra CPP driver v2.13.0
 - PHP Rdkafka v4.0.3
@@ -68,6 +66,7 @@ Local version: Unknown)
 - gem (3.1.2)
 - Terraform (Terraform v0.12.23)
 - Packer (1.5.4)
+- wkhtmltopdf (wkhtmltopdf 0.12.5 (with patched qt))
 - Cached container images
   - jekyll/builder:latest (Digest: sha256:875de39aa06300c749e26a79f39cdfa31404e4f2dbd2953cd4ebb0442bffda9e)
   - mcr.microsoft.com/azure-pipelines/node8-typescript:latest (Digest: sha256:e52e60b9f71183969830a3664279b5d8c799b4b0ec2c25a0686f7c02f6a9669a)
