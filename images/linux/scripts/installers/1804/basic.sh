@@ -50,7 +50,7 @@ echo "Install shellcheck"
 apt-get install -y --no-install-recommends shellcheck
 
 echo "Install sudo"
-apt-get install -y --no-install-recommends sudo
+apt-get install -y --no-install-recommends -o Dpkg::Options::="--force-confnew" sudo
 
 echo "Install telnet"
 apt-get install -y --no-install-recommends telnet
@@ -126,6 +126,9 @@ apt-get install -y --no-install-recommends curl
 
 echo "Install parallel"
 apt-get install -y --no-install-recommends parallel
+
+echo "Install zlib1g"
+apt-get install -y zlib1g zlib1g-dev
 
 # Run tests to determine that the software installed as expected
 echo "Testing to make sure that script performed as expected, and basic scenarios work"

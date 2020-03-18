@@ -1,0 +1,200 @@
+{
+    "variables": {
+        "commit_url": "{{env `COMMIT_URL`}}",
+        "commit_file": "/imagegeneration/commit.txt",
+        "image_folder": "/imagegeneration",
+        "image_version": "dev",
+        "imagedata_file": "/imagegeneration/imagedata.json",
+        "image_os": "ubuntu18",
+        "metadata_file": "/imagegeneration/metadatafile",
+        "installer_script_folder": "/imagegeneration/installers",
+        "helper_script_folder": "/imagegeneration/helpers",
+        "github_feed_token": "{{env `GITHUB_TOKEN`}}",
+        "scaleway_organization_id": "{{env `ORGANIZATION_ID`}}",
+        "scaleway_api_token": "{{env `API_TOKEN`}}",
+        "scaleway_image_uuid": "f974feac-abae-4365-b988-8ec7d1cec10d",
+        "scaleway_commercial_type": "DEV1-S"
+    },
+    "builders": [
+        {
+            "type": "scaleway",
+            "organization_id": "{{ user `scaleway_organization_id`}}",
+            "api_token": "{{ user `scaleway_api_token` }}",
+            "image": "{{ user `scaleway_image_uuid`}}",
+            "commercial_type": "{{ user `scaleway_commercial_type`}}",
+            "server_name": "ubuntu18-CI-{{ timestamp }}",
+            "image_name": "ubuntu18-CI",
+            "region": "par1",
+            "ssh_username": "root",
+            "ssh_private_key_file": "~/.ssh/id_rsa"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "mkdir {{user `image_folder`}}",
+                "chmod 777 {{user `image_folder`}}",
+                "echo {{user `commit_url`}} > {{user `commit_file`}}",
+                "chmod +r {{user `commit_file`}}"
+            ],
+            "environment_vars": [
+                "DEBIAN_FRONTEND=noninteractive"
+            ]
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "apt-get update",
+                "apt-get dist-upgrade -y -o Dpkg::Options::=\"--force-confnew\"",
+                "systemctl disable apt-daily.service",
+                "systemctl disable apt-daily.timer",
+                "systemctl disable apt-daily-upgrade.timer",
+                "systemctl disable apt-daily-upgrade.service",
+                "echo '* soft nofile 65536 \n* hard nofile 65536' >> /etc/security/limits.conf",
+                "echo 'session required pam_limits.so' >> /etc/pam.d/common-session",
+                "echo 'session required pam_limits.so' >> /etc/pam.d/common-session-noninteractive",
+                "echo 'DefaultLimitNOFILE=65536' >> /etc/systemd/system.conf"
+            ],
+            "environment_vars": [
+                "DEBIAN_FRONTEND=noninteractive",
+                "APT_LISTCHANGES_FRONTEND=cat"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/scripts/helpers",
+            "destination": "{{user `helper_script_folder`}}"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/scripts/installers",
+            "destination": "{{user `installer_script_folder`}}"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/1804/preparemetadata.sh"
+            ],
+            "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
+            ],
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/preimagedata.sh"
+            ],
+            "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
+                "IMAGEDATA_FILE={{user `imagedata_file`}}"
+            ],
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "echo ImageVersion={{user `image_version`}} | tee -a /etc/environment",
+                "echo ImageOS={{user `image_os`}} | tee -a /etc/environment"
+            ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/scripts/installers/7-zip.sh",
+                "{{template_dir}}/scripts/installers/ansible.sh",
+                "{{template_dir}}/scripts/installers/1804/basic.sh",
+                "{{template_dir}}/scripts/installers/aws.sh",
+                "{{template_dir}}/scripts/installers/build-essential.sh",
+                "{{template_dir}}/scripts/installers/clang.sh",
+                "{{template_dir}}/scripts/installers/cmake.sh",
+                "{{template_dir}}/scripts/installers/docker-compose.sh",
+                "{{template_dir}}/scripts/installers/gcc.sh",
+                "{{template_dir}}/scripts/installers/git.sh",
+                "{{template_dir}}/scripts/installers/nodejs.sh",
+                "{{template_dir}}/scripts/installers/1804/php7.sh",
+                "{{template_dir}}/scripts/installers/1804/composer.sh",
+                "{{template_dir}}/scripts/installers/1804/php-cassandra.sh",
+                "{{template_dir}}/scripts/installers/1804/php-rdkafka.sh",
+                "{{template_dir}}/scripts/installers/postgresql.sh",
+                "{{template_dir}}/scripts/installers/ruby.sh",
+                "{{template_dir}}/scripts/installers/terraform.sh",
+                "{{template_dir}}/scripts/installers/packer.sh",
+                "{{template_dir}}/scripts/installers/wkhtmltopdf.sh",
+                "{{template_dir}}/scripts/installers/updatepath.sh",
+                "{{template_dir}}/scripts/installers/dpkg-config.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "DEBIAN_FRONTEND=noninteractive",
+                "APT_LISTCHANGES_FRONTEND=cat"
+            ],
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/toolcache-1804.json",
+            "destination": "{{user `installer_script_folder`}}/toolcache.json"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/scripts/helpers/aliases",
+            "destination": "~/.bash_aliases"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/helpers/containercache.sh",
+                "{{template_dir}}/scripts/installers/hosted-tool-cache.sh",
+                "{{template_dir}}/scripts/installers/python.sh",
+                "{{template_dir}}/scripts/installers/test-toolcache.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "GITHUB_FEED_TOKEN={{user `github_feed_token`}}"
+            ],
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/scripts/installers/boost.sh"
+            ],
+            "environment_vars": [
+                "METADATA_FILE={{user `metadata_file`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "BOOST_VERSIONS=1.69.0",
+                "BOOST_DEFAULT=1.69.0"
+            ],
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}"
+        },
+        {
+            "type": "file",
+            "source": "{{user `metadata_file`}}",
+            "destination": "{{template_dir}}/Ubuntu1804-README.md",
+            "direction": "download"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "rm -rf {{user `helper_script_folder`}}",
+                "rm -rf {{user `installer_script_folder`}}",
+                "chmod 755 {{user `image_folder`}}",
+                "source ~/.bash_aliases && php73",
+                "apt-get -y autoclean",
+                "apt-get -y autoremove",
+                "find /var/lib/apt -type f | xargs rm -f",
+                "rm -rf /usr/src/linux-headers*",
+                "rm -f /home/vagrant/.bash_history",
+                "rm -rf /var/tmp /tmp",
+                "df -h"
+            ]
+        }
+    ]
+}
