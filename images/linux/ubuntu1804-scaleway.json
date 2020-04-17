@@ -11,7 +11,7 @@
         "helper_script_folder": "/imagegeneration/helpers",
         "github_feed_token": "{{env `GITHUB_TOKEN`}}",
         "scaleway_organization_id": "{{env `ORGANIZATION_ID`}}",
-        "scaleway_api_token": "{{env `API_TOKEN`}}",
+        "scaleway_api_token": "{{env `SCW_TOKEN`}}",
         "scaleway_image_uuid": "f974feac-abae-4365-b988-8ec7d1cec10d",
         "scaleway_commercial_type": "DEV1-M"
     },
