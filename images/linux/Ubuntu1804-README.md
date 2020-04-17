@@ -2,7 +2,7 @@
 The following software is installed on machines with the dev update.
 ***
 - 7-Zip 16.02
-- Ansible (ansible 2.9.6)
+- Ansible (ansible 2.9.7)
 - Basic CLI:
   - curl
   - dnsutils
@@ -29,34 +29,31 @@ The following software is installed on machines with the dev update.
   - wget
   - zip
   - zstd
-- AWS CLI (aws-cli/1.18.23 Python/2.7.17 Linux/4.9.93-mainline-rev1 botocore/1.15.23)
+- AWS CLI (aws-cli/1.18.40 Python/2.7.17 Linux/4.9.93-mainline-rev1 botocore/1.15.40)
 - build-essential
-- Clang 6.0 (6.0.1)
-- Clang 8 (8.0.1)
-- Clang 9 (9.0.0)
 - CMake (cmake version 3.16.2)
 - Docker Compose (docker-compose version 1.25.4, build 8d51620a)
 - Docker CE (Docker version 19.03.8, build afacb8b7f0)
 - GNU C++ 7.5.0
-- GNU C++ 8.3.0
+- GNU C++ 8.4.0
 - GNU C++ 9.2.1
-- Git (2.25.2)
+- Git (2.26.1)
 - Git Large File Storage (LFS) (2.10.0)
-- Node.js (v12.16.1)
+- Node.js (v12.16.2)
 - Grunt (grunt-cli v1.2.0)
 - Gulp (CLI version: 2.2.0
 Local version: Unknown)
-- n (6.4.0)
+- n (6.5.1)
 - Parcel (1.12.4)
 - TypeScript (Version 3.8.3)
-- Webpack (4.42.0)
+- Webpack (4.42.1)
 - Webpack CLI (3.3.11)
 - Yarn (1.22.4)
-- PHP 7.1 (PHP 7.1.33-12+ubuntu18.04.1+deb.sury.org+1 (cli) (built: Feb 23 2020 07:22:16) ( NTS ))
-- PHP 7.2 (PHP 7.2.28-3+ubuntu18.04.1+deb.sury.org+1 (cli) (built: Feb 23 2020 07:23:25) ( NTS ))
-- PHP 7.3 (PHP 7.3.15-3+ubuntu18.04.1+deb.sury.org+1 (cli) (built: Feb 23 2020 07:23:33) ( NTS ))
-- PHP 7.4 (PHP 7.4.3 (cli) (built: Feb 23 2020 07:24:28) ( NTS ))
-- Composer (Composer version 1.10.1 2020-03-13 20:34:27)
+- PHP 7.1 (PHP 7.1.33-14+ubuntu18.04.1+deb.sury.org+1 (cli) (built: Mar 20 2020 13:57:43) ( NTS ))
+- PHP 7.2 (PHP 7.2.29-1+ubuntu18.04.1+deb.sury.org+1 (cli) (built: Mar 20 2020 13:54:39) ( NTS ))
+- PHP 7.3 (PHP 7.3.16-1+ubuntu18.04.1+deb.sury.org+1 (cli) (built: Mar 20 2020 13:51:46) ( NTS ))
+- PHP 7.4 (PHP 7.4.4 (cli) (built: Mar 20 2020 13:47:45) ( NTS ))
+- Composer (Composer version 1.10.5 2020-04-10 11:44:22)
 - Datastax PHP driver v1.3.2
 - Cassandra CPP driver v2.13.0
 - PHP Rdkafka v4.0.3
@@ -64,8 +61,8 @@ Local version: Unknown)
 - psql (PostgreSQL) 10.12
 - ruby (2.5.1p57)
 - gem (3.1.2)
-- Terraform (Terraform v0.12.23)
-- Packer (1.5.4)
+- Terraform (Terraform v0.12.24)
+- Packer (1.5.5)
 - wkhtmltopdf (wkhtmltopdf 0.12.5 (with patched qt))
 - Cached container images
   - jekyll/builder:latest (Digest: sha256:875de39aa06300c749e26a79f39cdfa31404e4f2dbd2953cd4ebb0442bffda9e)
@@ -77,10 +74,10 @@ Local version: Unknown)
   - Python 3.7.6
   - Python 3.8.2
 - Ruby:
-  - Ruby 2.4.9
-  - Ruby 2.5.7
-  - Ruby 2.6.5
-  - Ruby 2.7.0
+  - Ruby 2.4.10
+  - Ruby 2.5.8
+  - Ruby 2.6.6
+  - Ruby 2.7.1
 - PyPy:
   - PyPy 2.7.17
   - PyPy 3.6.9
