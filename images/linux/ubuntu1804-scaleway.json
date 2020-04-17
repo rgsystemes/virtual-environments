@@ -13,7 +13,7 @@
         "scaleway_organization_id": "{{env `ORGANIZATION_ID`}}",
         "scaleway_api_token": "{{env `API_TOKEN`}}",
         "scaleway_image_uuid": "f974feac-abae-4365-b988-8ec7d1cec10d",
-        "scaleway_commercial_type": "DEV1-S"
+        "scaleway_commercial_type": "DEV1-M"
     },
     "builders": [
         {
@@ -22,8 +22,8 @@
             "api_token": "{{ user `scaleway_api_token` }}",
             "image": "{{ user `scaleway_image_uuid`}}",
             "commercial_type": "{{ user `scaleway_commercial_type`}}",
-            "server_name": "ubuntu18-CI-{{ timestamp }}",
-            "image_name": "ubuntu18-CI",
+            "server_name": "ubuntu18-CI-{{ scaleway_commercial_type}}-{{ timestamp }}",
+            "image_name": "ubuntu18-CI-{{ scaleway_commercial_type }}",
             "region": "par1",
             "ssh_username": "root",
             "ssh_private_key_file": "~/.ssh/id_rsa"
