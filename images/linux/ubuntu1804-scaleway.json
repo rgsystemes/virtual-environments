@@ -22,8 +22,8 @@
             "api_token": "{{ user `scaleway_api_token` }}",
             "image": "{{ user `scaleway_image_uuid`}}",
             "commercial_type": "{{ user `scaleway_commercial_type`}}",
-            "server_name": "ubuntu18-CI-{{ scaleway_commercial_type}}-{{ timestamp }}",
-            "image_name": "ubuntu18-CI-{{ scaleway_commercial_type }}",
+            "server_name": "ubuntu18-CI-{{ user `scaleway_commercial_type` }}-{{ timestamp }}",
+            "image_name": "ubuntu18-CI-{{ user `scaleway_commercial_type` }}",
             "region": "par1",
             "ssh_username": "root",
             "ssh_private_key_file": "~/.ssh/id_rsa"
