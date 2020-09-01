@@ -8,13 +8,11 @@ Import-Module -Name ImageHelpers
 
 # Install the latest version of sbt.
 # See https://chocolatey.org/packages/sbt
-choco install sbt -y
+Choco-Install -PackageName sbt
 
 $env:SBT_HOME="${env:ProgramFiles(x86)}\sbt"
 
 # Add sbt binaries to the path
 Add-MachinePathItem "$env:SBT_HOME\bin"
-$env:Path = Get-MachinePath
 
-# Done
-exit 0
+Invoke-PesterTests -TestFile "Tools" -TestName "Sbt"

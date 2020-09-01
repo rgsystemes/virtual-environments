@@ -12,7 +12,7 @@ $CachePath = 'C:\npm\cache'
 New-Item -Path $PrefixPath -Force -ItemType Directory
 New-Item -Path $CachePath -Force -ItemType Directory
 
-choco install nodejs-lts -y --force
+Choco-Install -PackageName nodejs-lts -ArgumentList "--force"
 
 Add-MachinePathItem $PrefixPath
 $env:Path = Get-MachinePath
@@ -33,3 +33,6 @@ npm install -g --save-dev webpack webpack-cli
 npm install -g yarn
 npm install -g lerna
 npm install -g node-sass
+npm install -g newman
+
+Invoke-PesterTests -TestFile "Node"
