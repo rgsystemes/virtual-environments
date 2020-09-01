@@ -9,7 +9,7 @@ function WriteItem {
         echo "METADATA_FILE environment variable must be set to output to Metadata Document!"
         return 1;
     else
-        echo -e "$1" >> "$METADATA_FILE"
+        echo -e "$1" | sudo tee -a "$METADATA_FILE"
     fi
 }
 
@@ -27,4 +27,16 @@ function DocumentInstalledItem {
 
 function DocumentInstalledItemIndent {
     WriteItem "  - $1"
+}
+
+function AddBlockquote {
+    WriteItem "> $1"
+}
+
+function StartCode {
+    WriteItem '```'
+}
+
+function EndCode {
+    WriteItem '```'
 }
